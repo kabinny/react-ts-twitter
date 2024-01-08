@@ -13,6 +13,11 @@ $grayDark: #4c515b;
 $font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
+// 개발 실행 중
+html > canvas {
+  background-color: unset;
+}
+
 body {
   margin: 0;
   font-family: $font;
