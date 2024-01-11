@@ -329,4 +329,8 @@ body {
       color: $gray;
     }
   }
+
+  &__error {
+    color: salmon;
+  }
 }
