@@ -338,4 +338,28 @@ body {
   &__error {
     color: salmon;
   }
+
+  &__btn--google {
+    @extend .form__btn--submit;
+    background-color: $white;
+    color: $activeBorder;
+
+    &:hover,
+    &:focus {
+      background-color: $primaryColor;
+      color: $white;
+    }
+  }
+
+  &__btn--github {
+    @extend .form__btn--submit;
+    background-color: black;
+    color: $white;
+
+    &:hover,
+    &:focus {
+      background-color: $activeBg;
+      color: $white;
+    }
+  }
 }
