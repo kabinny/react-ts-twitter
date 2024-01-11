@@ -30,6 +30,11 @@ body {
   color: $white;
 }
 
+.Toastify * {
+  background-color: revert;
+  color: revert;
+}
+
 .layout {
   max-width: 600px;
   margin: 0 auto;

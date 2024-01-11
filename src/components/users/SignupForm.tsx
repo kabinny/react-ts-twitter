@@ -118,7 +118,7 @@ export default function SignupForm() {
         </Link>
       </div>
 
-      <div className="form__block">
+      <div className="form__block--lg">
         <button
           type="submit"
           className="form__btn--submit"
