@@ -1,4 +1,6 @@
+import AuthContext from 'context/AuthContext'
 import { PostProps } from 'pages/home'
+import { useContext } from 'react'
 import { AiFillHeart } from 'react-icons/ai'
 import { FaRegComment, FaUserCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -8,6 +10,7 @@ interface PostBoxProps {
 }
 
 export default function PostBox({ post }: PostBoxProps) {
+  const { user } = useContext(AuthContext)
   const handleDelete = () => {}
 
   return (
@@ -33,15 +36,20 @@ export default function PostBox({ post }: PostBoxProps) {
       </Link>
 
       <div className="post__box-footer">
-        {/* post.uid === user.id */}
-        <>
-          <button type="button" className="post__delete" onClick={handleDelete}>
-            Delete
-          </button>
-          <Link to={`/posts/edit/${post?.id}`} className="post__edit">
-            Edit
-          </Link>
-        </>
+        {user?.uid === post?.uid && (
+          <>
+            <button
+              type="button"
+              className="post__delete"
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
+            <Link to={`/posts/edit/${post?.id}`} className="post__edit">
+              Edit
+            </Link>
+          </>
+        )}
 
         <button type="button" className="post__likes">
           <AiFillHeart />
