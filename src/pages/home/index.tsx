@@ -1,5 +1,5 @@
 import PostBox from 'components/posts/PostBox'
-import PostFrom from 'components/posts/PostForm'
+import PostForm from 'components/posts/PostForm'
 import AuthContext from 'context/AuthContext'
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from 'firebaseApp'
@@ -48,7 +48,7 @@ export default function HomePage() {
       </div>
 
       {/* Post Form */}
-      <PostFrom />
+      <PostForm />
 
       {/* Tweet Posts */}
       <div className="post">

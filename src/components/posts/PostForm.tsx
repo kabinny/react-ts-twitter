@@ -5,7 +5,7 @@ import { useContext, useState } from 'react'
 import { FiImage } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 
-export default function PostFrom() {
+export default function PostForm() {
   const [content, setContent] = useState<string>('')
   const { user } = useContext(AuthContext)
 
