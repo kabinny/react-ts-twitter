@@ -46,6 +46,19 @@ export default function PostBox({ post }: PostBoxProps) {
 
           <div className="post__box-content">{post?.content}</div>
 
+          {/* 이미지 */}
+          {post?.imageUrl && (
+            <div className="post__image-div">
+              <img
+                src={post?.imageUrl}
+                alt="post"
+                className="post__image"
+                width={100}
+                height={100}
+              />
+            </div>
+          )}
+
           {/* 해시태그 */}
           <div className="post-form__hashtags-outputs">
             {post?.hashTags?.map((tag, index) => (
