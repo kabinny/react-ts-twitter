@@ -1,3 +1,4 @@
+import FollowingBox from 'components/following/FollowingBox'
 import AuthContext from 'context/AuthContext'
 import {
   arrayRemove,
@@ -63,22 +64,31 @@ export default function PostBox({ post }: PostBoxProps) {
 
   return (
     <div className="post__box" key={post?.id}>
-      <Link to={`/posts/${post?.id}`}>
-        <div className="post__box-profile">
-          <div className="post__flex">
-            {post?.profileUrl ? (
-              <img
-                src={post?.profileUrl}
-                alt="profile"
-                className="post__box-profile-img"
-              />
-            ) : (
-              <FaUserCircle className="post__box-profile-icon" />
-            )}
-            <div className="post__email">{post?.email}</div>
-            <div className="post__createdAt">{post?.createdAt}</div>
-          </div>
+      <div className="post__box-profile">
+        <div className="post__flex">
+          {post?.profileUrl ? (
+            <img
+              src={post?.profileUrl}
+              alt="profile"
+              className="post__box-profile-img"
+            />
+          ) : (
+            <FaUserCircle className="post__box-profile-icon" />
+          )}
 
+          <div className="post__flex--between">
+            <div className="post__flex">
+              <div className="post__email">{post?.email}</div>
+              <div className="post__createdAt">{post?.createdAt}</div>
+            </div>
+
+            {/* 팔로우 */}
+            <FollowingBox post={post} />
+          </div>
+        </div>
+
+        {/* 콘텐트 */}
+        <Link to={`/posts/${post?.id}`}>
           <div className="post__box-content">{post?.content}</div>
 
           {/* 이미지 */}
@@ -93,17 +103,17 @@ export default function PostBox({ post }: PostBoxProps) {
               />
             </div>
           )}
+        </Link>
 
-          {/* 해시태그 */}
-          <div className="post-form__hashtags-outputs">
-            {post?.hashTags?.map((tag, index) => (
-              <span className="post-form__hashtags-tag" key={index}>
-                #{tag}
-              </span>
-            ))}
-          </div>
+        {/* 해시태그 */}
+        <div className="post-form__hashtags-outputs">
+          {post?.hashTags?.map((tag, index) => (
+            <span className="post-form__hashtags-tag" key={index}>
+              #{tag}
+            </span>
+          ))}
         </div>
-      </Link>
+      </div>
 
       <div className="post__box-footer">
         {user?.uid === post?.uid && (
