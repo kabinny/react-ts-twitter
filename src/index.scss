@@ -566,6 +566,11 @@ body {
     object-position: center;
   }
 
+  &__flex {
+    display: flex;
+    gap: 8px;
+  }
+
   &__btn {
     @extend .button;
     background-color: $primaryColor;
@@ -573,6 +578,16 @@ body {
     &:hover,
     &:focus {
       background-color: $activeBorder;
+    }
+
+    &--language {
+      @extend .button;
+      background-color: $gray;
+
+      &:hover,
+      &:focus {
+        background-color: $grayDark;
+      }
     }
   }
 
