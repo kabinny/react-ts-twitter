@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+# react-ts-twitter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 보안 설정
 
-## Available Scripts
+### Cloud Firestore, Storage 규칙 수정
 
-In the project directory, you can run:
+기존 개발 모드에서는 모든 것을 허용했지만, 인증된 사용자만 가능하게 변경
 
-### `yarn start`
+```
+// before
+allow read, write: if request.time < timestamp.date(2024, 2, 12);
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+// after
+allow read, write: if request.auth != null;
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Google Cloud API
 
-### `yarn test`
+API 및 서비스 > 사용자 인증 정보 > API 키
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Browser key 클릭
+2. 애플리케이션 제한사항 설정: 웹사이트 선택
+3. 웹사이트 제한사항: 웹사이트 추가
 
-### `yarn build`
+- localhost
+- 'firebase authentication 에 있는 승인된 도메인'/\*
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Vercel 배포
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Vercel CLI 설치
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm install -g vercel
+yarn global add vercel
 
-### `yarn eject`
+vercel --version
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Vercel 로그인
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+vercel login
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 배포
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+vercel
+```
 
-## Learn More
+### 삭제
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+vercel remove
+```
