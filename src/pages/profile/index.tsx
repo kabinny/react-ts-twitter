@@ -9,6 +9,7 @@ import {
   where,
 } from 'firebase/firestore'
 import { db } from 'firebaseApp'
+import useTranslation from 'hooks/useTranslation'
 import { PostProps } from 'pages/home'
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -24,6 +25,8 @@ export default function ProfilePage() {
   const [language, setLanguage] = useRecoilState(languageState)
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
+
+  const t = useTranslation()
 
   // 한영 변환
   const onClickLanguage = () => {
@@ -68,7 +71,7 @@ export default function ProfilePage() {
   return (
     <div className="home">
       <div className="home__top">
-        <div className="home__title">Profile</div>
+        <div className="home__title">{t('MENU_PROFILE')}</div>
 
         {/* 프로필 영역 */}
         <div className="profile">
@@ -85,7 +88,7 @@ export default function ProfilePage() {
               className="profile__btn"
               onClick={() => navigate('/profile/edit')}
             >
-              프로필 수정
+              {t('BUTTON_EDIT_PROFILE')}
             </button>
 
             <button
@@ -98,7 +101,9 @@ export default function ProfilePage() {
           </div>
         </div>
         <div className="profile__text">
-          <div className="profile__name">{user?.displayName || '사용자님'}</div>
+          <div className="profile__name">
+            {user?.displayName || t('PROFILE_NAME')}
+          </div>
           <div className="profile__email">{user?.email}</div>
         </div>
 
@@ -107,7 +112,7 @@ export default function ProfilePage() {
             className={`home__tab ${activeTab === 'my' && 'home__tab--active'}`}
             onClick={() => setActiveTab('my')}
           >
-            For You
+            {t('TAB_MY')}
           </div>
           <div
             className={`home__tab ${
@@ -115,7 +120,7 @@ export default function ProfilePage() {
             }`}
             onClick={() => setActiveTab('like')}
           >
-            Likes
+            {t('TAB_LIKES')}
           </div>
         </div>
 
@@ -126,7 +131,7 @@ export default function ProfilePage() {
               myPosts?.map((post) => <PostBox post={post} key={post.id} />)
             ) : (
               <div className="post__no-posts">
-                <div className="post__text">게시글이 없습니다.</div>
+                <div className="post__text">{t('NO_POSTS')}</div>
               </div>
             )}
           </div>
@@ -139,7 +144,7 @@ export default function ProfilePage() {
               likePosts?.map((post) => <PostBox post={post} key={post.id} />)
             ) : (
               <div className="post__no-posts">
-                <div className="post__text">게시글이 없습니다.</div>
+                <div className="post__text">{t('NO_POSTS')}</div>
               </div>
             )}
           </div>

@@ -9,6 +9,7 @@ import {
 } from 'firebase/firestore'
 import { deleteObject, ref } from 'firebase/storage'
 import { db, storage } from 'firebaseApp'
+import useTranslation from 'hooks/useTranslation'
 import { PostProps } from 'pages/home'
 import { useContext } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
@@ -24,6 +25,8 @@ export default function PostBox({ post }: PostBoxProps) {
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
   const imageRef = ref(storage, post?.imageUrl)
+
+  const t = useTranslation()
 
   const handleDelete = async () => {
     const confirm = window.confirm('해당 게시글을 삭제하시겠습니까?')
@@ -123,10 +126,10 @@ export default function PostBox({ post }: PostBoxProps) {
               className="post__delete"
               onClick={handleDelete}
             >
-              Delete
+              {t('BUTTON_DELETE')}
             </button>
             <Link to={`/posts/edit/${post?.id}`} className="post__edit">
-              Edit
+              {t('BUTTON_EDIT')}
             </Link>
           </>
         )}

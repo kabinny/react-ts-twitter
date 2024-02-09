@@ -6,6 +6,7 @@ import { useContext } from 'react'
 import { toast } from 'react-toastify'
 
 import styles from './Comment.module.scss'
+import useTranslation from 'hooks/useTranslation'
 
 export interface CommentProps {
   comment: string
@@ -21,6 +22,8 @@ interface CommentBoxProps {
 
 export default function CommentBox({ data, post }: CommentBoxProps) {
   const { user } = useContext(AuthContext)
+
+  const t = useTranslation()
 
   const handleDeleteComment = async () => {
     if (post) {
@@ -56,7 +59,7 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
               className="comment__delete-btn"
               onClick={handleDeleteComment}
             >
-              삭제
+              {t('BUTTON_DELETE')}
             </button>
           )}
         </div>
